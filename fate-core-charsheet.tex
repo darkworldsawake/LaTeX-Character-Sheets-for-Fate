@@ -1,0 +1,35 @@
+%%  This is a LaTex Template for Fate Core character sheets
+\documentclass{article}
+
+%%  Creates Skills environment
+%%  #1 the value of the highest skill row.
+%%  As many rows will be printed as
+%%  given in the environment.
+\newenvironment{skilltable}[1]{
+\newcounter{skillcounter}
+\setcounter{skillcounter}{#1} % #1 must be a number
+\section{Skills}
+\begin{table}
+\begin{tabular}
+}{
+\end{tabular}
+\end{table}
+}
+%% Creates Skill Rows
+\newcommand{\makeskillrow}[5]{
+\addtocounter{skillcounter}{-1}
+(+\value{skillcounter}) & #1 & #2 & #3 & #4 & #5//
+}
+
+%%  CHARACTER SHEET
+\begin{document}
+
+%%  SKILLS
+\begin{skilltable}{6}
+\makeskillrow{}
+\makeskillrow{}
+\end{skilltable}
+
+
+
+\end{document}
