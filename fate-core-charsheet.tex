@@ -1,6 +1,24 @@
 %%  This is a LaTex Template for Fate Core character sheets
 \documentclass{article}
 
+%%  Packages to use
+\usepackage{calc}
+%%  Creates Adjective Ladder
+%%    \newcommand{\adjLadder}[1]{
+%%    Legendary   8
+%%    Epic        7
+%%    Fantastic   6
+%%    Superb      5
+%%    Great       4
+%%    Good        3
+%%    Fair        2
+%%    Average     1
+%%    Mediocre    0
+%%    Poor        -1
+%%    Terrible    -2
+%%    Awful       -3
+%%    Abysmal     -4
+%%    }
 %%  Creates Skills environment
 %%  #1 the value of the highest skill row.
 %%  As many rows will be printed as
@@ -17,17 +35,20 @@
 }
 %% Creates Skill Rows
 \newcommand{\makeskillrow}[5]{
+(\value{skillcounter}) & #1 & #2 & #3 & #4 & #5 //
 \addtocounter{skillcounter}{-1}
-(+\value{skillcounter}) & #1 & #2 & #3 & #4 & #5//
 }
 
 %%  CHARACTER SHEET
 \begin{document}
 
 %%  SKILLS
-\begin{skilltable}{6}
-\makeskillrow{}
-\makeskillrow{}
+\begin{skilltable}{5}
+\makeskillrow{\ }{\ }{\ }{\ }{\ }
+\makeskillrow{\ }{\ }{\ }{\ }{\ }
+\makeskillrow{\ }{\ }{\ }{\ }{\ }
+\makeskillrow{\ }{\ }{\ }{\ }{\ }
+\makeskillrow{\ }{\ }{\ }{\ }{\ }
 \end{skilltable}
 
 
