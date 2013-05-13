@@ -3,28 +3,68 @@
 
 %%  Packages to use
 \usepackage{calc}
-%%  Creates Adjective Ladder
-%%    \newcommand{\adjLadder}[1]{
-%%    Legendary   8
-%%    Epic        7
-%%    Fantastic   6
-%%    Superb      5
-%%    Great       4
-%%    Good        3
-%%    Fair        2
-%%    Average     1
-%%    Mediocre    0
-%%    Poor        -1
-%%    Terrible    -2
-%%    Awful       -3
-%%    Abysmal     -4
-%%    }
+\usepackage{xparse}
+
+%%--------------------------------
+%%      FORMATTING
+%%--------------------------------
+% put style information here...
+%%--------------------------------
+%%      IDENTITY
+%%--------------------------------
+
+\newcommand{\charName}[1]{ % \charname{<your character's name>}
+\section{Name}
+#1
+}
+\newcommand{\charDesc}[1]{ % \charDesc{<your character's description>}
+\section{Description}
+\emph{#1}
+}
+\newcounter{refreshcount}
+\set{refreshcount}{5}
+\newcommand{\charRefresh}[0]{
+\parbox{.3\bs linewidth}
+{\value{refreshcount} \hfill}
+
+\newcommand{\makeCharID}[2]{ % \charID{<name>}{<description>}
+\section{Identity}
+\charName{#1}
+\charDesc{#2}
+
+}
+%% 
+%% Thanks to @egreg on
+%%  
+\ExplSyntaxOn
+\NewDocumentCommand{\skillAdj}{m}
+ {
+  \int_case:nnn { #1 }
+   {
+     {8}{Legendary}
+     {7}{Epic}
+     {6}{Fantastic}
+     {5}{Superb}
+     {4}{Great}
+     {3}{Good}
+     {2}{Fair}
+     {1}{Average}
+     {0}{Mediocre}
+    {-1}{Poor}
+    {-2}{Terrible}
+    {-3}{Awful}
+    {-4}{Abysmal}
+   }
+   {Error}
+ }
+\ExplSyntaxOff
 %%  Creates Skills environment
 %%  #1 the value of the highest skill row.
 %%  As many rows will be printed as
 %%  given in the environment.
 \newenvironment{skilltable}[1]{
-\newcounter{skillcounter}
+\newcounter{
+}
 \setcounter{skillcounter}{#1} % #1 must be a number
 \section{Skills}
 \begin{table}
